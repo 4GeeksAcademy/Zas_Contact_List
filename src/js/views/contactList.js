@@ -12,11 +12,14 @@ const ContactList =  ()=>{
     const { store, actions } = useContext(Context);
     
     useEffect(() => {
-        if (store.slug) {
-          actions.getContacts(store.slug);
+      const slug = localStorage.getItem("slug")
+        if (slug) {
+          actions.getContacts(slug);
+          console.log(store);
+          
         }
-      }, [store.slug]);
-      console.log(store.slug);
+      }, []);
+     
       
     return(
         <>

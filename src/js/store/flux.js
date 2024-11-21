@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           
           getActions().getAgenda(agenda[0].slug)
-          
+          localStorage.setItem("slug",slug)
 
         } catch (error) {
           console.log(error);
@@ -129,11 +129,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
             
-      getContacts: async () => {
+      getContacts: async (slug) => {
         let store = getStore()
         try {
           const response = await fetch(
-            `https://playground.4geeks.com/contact/agendas/${store.slug}/contacts`,
+            `https://playground.4geeks.com/contact/agendas/${slug}/contacts`,
             {
               method: "GET",
               headers: {
@@ -142,14 +142,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           const result = await response.json();
-          console.log(result);
+         
+          setStore({slug:slug,contacts: result.contacts})
           
         } catch (error) {
           console.log(error);
         }
       },
 
-      editContact: async (id) => {
+      editContact: async (contact) => {
+        const {id, name, email, phone, address} = contact
         try {
           const response = await fetch(
             `https://playground.4geeks.com/contact/agendas/zas/contacts/${id}`,
@@ -160,20 +162,20 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                name: "",
-                phone: "",
-                email: "",
-                address: "",
+                name: name,
+                phone: phone,
+                email: email,
+                address: address,
               }),
             }
           );
           const result = await response.json();
-          if (response.ok) {
-            alert("Se ha editado el contacto");
-          }
+          // if (response.ok) {
+          //   alert("Se ha editado el contacto");
+          // }
           const store = getStore();
           const updatedContacts = store.contacts.map((contact) =>
-            contact.id === updatedContacts.id ? result : contact
+            contact.id === id ? result : contact
           );
           setStore({ contacts: updatedContacts });
 

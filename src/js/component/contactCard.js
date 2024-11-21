@@ -29,7 +29,7 @@ const eliminarContacto = () => {
                 <Link to={`/editContact/${id}`}>
                   <button
                     className="me-2 bg-success text-white"
-                    style={{
+                    style = {{
                       color: "black",
                       border: "none",
                       borderRadius: "3px",

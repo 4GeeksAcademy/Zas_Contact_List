@@ -31,12 +31,12 @@ const EditContact = () => {
       return;
     }
     actions.editContact(formContact);
-    setFormContact({
-      name: "",
-      email: "",
-      phoneNumber: "",
-      address: "",
-    });
+    // setFormContact({
+    //   name: "",
+    //   email: "",
+    //   phoneNumber: "",
+    //   address: "",
+    // });
     navigate("/contactList");
   };
 
