@@ -11,7 +11,7 @@ const { store, actions } = useContext(Context)
 const eliminarContacto = () => {
   const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este contacto?");
   if (confirmDelete) {
-    actions.deleteContact(id);  // Llamar a la acción deleteContact pasándole el id
+    actions.deleteContact(id, store.slug);  // Llamar a la acción deleteContact pasándole el id
   }
 };
 

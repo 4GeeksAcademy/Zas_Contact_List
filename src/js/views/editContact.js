@@ -23,11 +23,11 @@ const EditContact = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (!formContact.name && !formContact.email) {
+    if (!formContact.name || !formContact.email) {
       alert("por favor, ingresa un nombre y un email");
       return;
     }
-    actions.editContact(formContact);
+    actions.editContact(formContact, store.slug);
     // setFormContact({
     //   name: "",
     //   email: "",
@@ -38,13 +38,13 @@ const EditContact = () => {
   };
 
   useEffect(() => {
-    const existingContact = store?.contacts.find((c) => c.id === parseInt(id));
+    const existingContact = store.contacts.find((c) => c.id === parseInt(id));
     if (existingContact) {
       setFormContact(existingContact);
     } else {
       console.error("Contacto no encontrado");
     }
-  }, [id, store.contacts]);
+  }, [id]);
 
   return (
     <form onSubmit={handleOnSubmit}>

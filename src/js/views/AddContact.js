@@ -21,18 +21,18 @@ export const AddContact = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (!formContact.name && !formContact.email) {
+    if (!formContact.name || !formContact.email) {
       alert("por favor, ingresa un nombre y un email");
       return;
     }
-    actions.createContact(formContact);
-    setFormContact({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
-    navigate ("/contactList")
+    actions.createContact(formContact, store.slug);
+    // setFormContact({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    //   address: "",
+    // });
+    navigate ("/ContactList")
   };
 
   return (
