@@ -4,16 +4,13 @@ import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const EditContact = () => {
-
-
-    
   let { id } = useParams();
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
   const [formContact, setFormContact] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     address: "",
   });
   const onChangeInput = (e) => {
@@ -37,22 +34,22 @@ const EditContact = () => {
     //   phoneNumber: "",
     //   address: "",
     // });
-    navigate("/contactList");
+    navigate("/ContactList");
   };
 
   useEffect(() => {
     const existingContact = store?.contacts.find((c) => c.id === parseInt(id));
     if (existingContact) {
-        setFormContact(existingContact);
+      setFormContact(existingContact);
     } else {
-        console.error("Contacto no encontrado");
+      console.error("Contacto no encontrado");
     }
-}, [id, store.contacts]);
+  }, [id, store.contacts]);
 
   return (
     <form onSubmit={handleOnSubmit}>
       <div className="container col-12 col-md-6">
-        <h1 className="text-center pt-2">New Contact</h1>
+        <h1 className="text-center pt-2 text-white">Edit Contact</h1>
         <div className="mb-3 pt-3">
           <label for="name" className="form-label">
             Full Name
@@ -108,14 +105,14 @@ const EditContact = () => {
         </div>
         <br />
         <div className="row">
-        <button type="submit" className="btn btn-success">
-          Save
-        </button>
-        <div className="d-flex justify-content-end mt-3">
-        <Link to="/ContactList">
-          <span className="text-success">Get back to contacts</span>
-        </Link>
-        </div>
+          <button type="submit" className="btn btn-success">
+            Save
+          </button>
+          <div className="d-flex justify-content-end mt-3">
+            <Link to="/ContactList">
+              <span className="text-success">Get back to contacts</span>
+            </Link>
+          </div>
         </div>
       </div>
     </form>

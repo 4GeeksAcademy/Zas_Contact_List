@@ -8,7 +8,7 @@ export const AddContact = () => {
   const [formContact, setFormContact] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     address: "",
   });
   const onChangeInput = (e) => {
@@ -29,7 +29,7 @@ export const AddContact = () => {
     setFormContact({
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       address: "",
     });
     navigate ("/contactList")
@@ -38,7 +38,7 @@ export const AddContact = () => {
   return (
     <form onSubmit={handleOnSubmit}>
       <div className="container col-12 col-md-6">
-        <h1 className="text-center pt-2">New Contact</h1>
+        <h1 className="text-center pt-2 text-white">New Contact</h1>
         <div className="mb-3 pt-3">
           <label for="name" className="form-label">
             Full Name
@@ -71,10 +71,10 @@ export const AddContact = () => {
             Phone Number
           </label>
           <input
-            value={formContact.phoneNumber}
+            value={formContact.phone}
             type="tel"
             className="form-control"
-            id="phoneNumber"
+            id="phone"
             placeholder="Enter phone number"
             onChange={onChangeInput}
           />

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
+	const clearStorage = ()=>localStorage.removeItem("slug")
 	return (
 
 		<div className="container">
@@ -12,7 +13,7 @@ export const Navbar = () => {
 					<button className="btn btn-success">Add new contact</button>
 				</Link>
 				<Link to="/">
-					<button className="btn btn-warning ms-4">Slug</button>
+					<button onClick={clearStorage} className="btn btn-warning ms-4">Slug</button>
 				</Link>
 
 			</div>

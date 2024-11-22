@@ -1,7 +1,7 @@
 import React, { Component, useContext } from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import { Context } from "../store/appContext";
+
 
 
 
@@ -14,6 +14,8 @@ const eliminarContacto = () => {
     actions.deleteContact(id);  // Llamar a la acción deleteContact pasándole el id
   }
 };
+
+
   return (
     <div>
     <div className="card mx-auto mb-1" >

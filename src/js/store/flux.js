@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(agenda);
           if (agenda.length === 0) {
             getActions().createAgenda(slug)
+            localStorage.setItem("slug",slug)
             console.log(agenda);
             
           }
@@ -69,10 +70,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      createContact: async (contact) => {
+      createContact: async (contact, slug) => {
         try {
           const response = await fetch(
-            `https://playground.4geeks.com/contact/agendas/zas/contacts`,
+            `https://playground.4geeks.com/contact/agendas/${slug}/contacts`,
             {
               method: "POST",
               headers: {
@@ -86,9 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           console.log(response);
           
-          if (response.ok) {
-            alert("Se creó un nuevo contacto");
-          }
+          
           const result = await response.json();
           console.log(result);
           
@@ -150,11 +149,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      editContact: async (contact) => {
+      editContact: async (contact, slug) => {
         const {id, name, email, phone, address} = contact
         try {
           const response = await fetch(
-            `https://playground.4geeks.com/contact/agendas/zas/contacts/${id}`,
+            `https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`,
             {
               method: "PUT",
               headers: {
@@ -184,10 +183,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      deleteContact: async (id) => {
+      deleteContact: async (id,slug) => {
         try {
           const response = await fetch(
-            `https://playground.4geeks.com/contact/agendas/zas/contacts/${id}`,
+            `https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`,
             {
               method: "DELETE",
               headers: {
