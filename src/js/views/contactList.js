@@ -7,7 +7,7 @@ const ContactList = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    const slug = localStorage.getItem("slug"); // Recupera el slug del localStorage
+    const slug = store.slug||localStorage.getItem("slug"); // Recupera el slug del localStorage
     if (slug) {
       actions.getContacts(slug); // Si existe el slug, llama a la acción para obtener los contactos
     } else {
